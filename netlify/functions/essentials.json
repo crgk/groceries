@@ -1,0 +1,135 @@
+[
+  {
+    "id": 1,
+    "name": "Cheddar cheese",
+    "details": "",
+    "preferredVendor": "Costco",
+    "quantity": "1 block"
+  },
+  {
+    "id": 2,
+    "name": "Peanut butter pretzels",
+    "preferredVendor": "Costco",
+    "quantity": "1 container" 
+  },
+  {
+    "id": 3,
+    "name": "Coconut water",
+    "preferredVendor": "Costco",
+    "quantity": "2 boxes (24 servings)"
+  },
+  {
+    "id": 4,
+    "name": "Honeycrisp apples",
+    "preferredVendor": "Costco",
+    "quantity": "12"
+  },
+  {
+    "id": 5,
+    "name": "Bananas",
+    "quantity": "6"
+  },
+  {
+    "id": 6,
+    "name": "Chicken thighs",
+    "preferredVendor": "Costco",
+    "quantity": "6"
+  },
+  {
+    "id": 7,
+    "name": "Pickled red onions",
+    "requiresPrep": true
+  },
+  {
+    "id": 8,
+    "name": "Eggs",
+    "preferredVendor": "Oahu Fresh",
+    "quantity": "1 dozen"
+  },
+  {
+    "id": 9,
+    "name": "Greek yogurt",
+    "details": "Fage 2% (or not non-fat w/ protein ~18g)",
+    "quantity": "35 oz"
+  },
+  {
+    "id": 10,
+    "name": "Honey",
+    "details": "LOCAL",
+    "preferredVendor": "Whole Foods",
+    "volume": "1 big jar"
+  },
+  {
+    "id": 11,
+    "name": "Ground Flaxseed",
+    "preferredVendor": "Whole Foods",
+    "volume": ""
+  },
+  {
+    "id": 12,
+    "name": "Peanut butter",
+  },
+  {
+    "id": 13,
+    "name": "Olive oil",
+    "preferredVendor": "Costco"
+  },
+  {
+    "id": 14,
+    "name": "White vinegar",
+    "preferredVendor": "Costco"
+  },
+  {
+    "id": 15,
+    "name": "Balsamic vinegar",
+    "preferredVendor": "Costco"
+  },
+  {
+    "id": 16,
+    "name": "Soy sauce"
+  },
+  {
+    "id": 17,
+    "name": "Sriracha"
+  },
+  {
+    "id": 18,
+    "name": "Oat milk",
+    "preferredVendor": "Costco"
+  },
+  {
+    "id": 19,
+    "name": "Potstickers",
+    "preferredVendor": "Costco"
+  },
+  {
+    "id": 20,
+    "name": "Frozen berries",
+    "preferredVendor": "Costco"
+  },
+  {
+    "id": 21,
+    "name": "Cholula"
+  },
+  {
+    "id": 22,
+    "name": "Rice"
+  },
+  {
+    "id": 23,
+    "name": "Fig bars",
+    "preferredVendor": "Costco"
+  },
+  {
+    "id": 24,
+    "name": "Sea salt"
+  },
+  {
+    "id": 25,
+    "name": "Cereal / oats"
+  },
+  {
+    "id": 26,
+    "name": "Garlic"
+  }
+]
