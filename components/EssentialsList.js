@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
+import Stack from "@mui/material/Stack";
+import Card from "@mui/material/Card";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
@@ -18,16 +18,16 @@ export default function EssentialsList() {
 	}, []);
 
 	return (
-		<Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-			<List>
-				{essentials.map(ess => (
+		<Stack sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper'}} spacing={2}>
+			{essentials.map(ess => (
+				<Card>
 					<ListItem>
 						<ListItemButton>
 							<ListItemText primary={ess.name} secondary={ess.preferredVendor + " " + ess.details} />
 						</ListItemButton>
 					</ListItem>
-				))}
-			</List>
-		</Box>
+				</Card>
+			))}
+		</Stack>
 	)
 }
