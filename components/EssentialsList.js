@@ -4,19 +4,18 @@ import Card from "@mui/material/Card";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import netlifyAuth from '../pages/netlifyIdentity.js'
+import netlifyIdentity from "netlify-identity-widget";
 
 export default function EssentialsList() {
 	const [essentials, setEssentials] = useState([])
 	const [isLoading, setLoading] = useState(false)
 
 	let headers = new Headers()
-	if (netlifyAuth.isAuthenticated) {
-		console.log("essentialsList.authenticated")
-		headers.set("Authorization", netlifyAuth.user?.token.access_token)
-	} else {
-		console.log("not authenticated")
-	}
+	useEffect(() => {
+		netlifyIdentity.init()
+		console.log(netlifyIdentity.currentUser())
+		headers.set("Authorization", netlifyIdentity.currentUser()?.token.access_token)
+	}, [])
 
 	// Runs only on the first render because of the [] dependency param
 	useEffect(() => {
