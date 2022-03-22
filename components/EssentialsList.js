@@ -14,7 +14,7 @@ export default function EssentialsList() {
 	useEffect(() => {
 		netlifyIdentity.init()
 		console.log(netlifyIdentity.currentUser())
-		headers.set("Authorization", netlifyIdentity.currentUser()?.token.access_token)
+		headers.set("Authorization", "Bearer " + netlifyIdentity.currentUser()?.token.access_token)
 	}, [])
 
 	// Runs only on the first render because of the [] dependency param

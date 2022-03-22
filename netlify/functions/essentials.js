@@ -4,9 +4,6 @@ export const handler = async function (event, context) {
 
 	const { identity, user } = context.clientContext;
 
-	console.log(user);
-	console.log(event.headers);
-
 	// Netlify Functions need to return an object with a statusCode
 	// Other properties such as headers or body can also be included.
 	return {
