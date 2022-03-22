@@ -22,7 +22,7 @@ export default function EssentialsList() {
 		setLoading(true)
 		fetch('/api/essentials', {'headers': headers})
 		.then(res => res.json())
-		.then(essentialsJSON=> {
+		.then(essentialsJSON => {
 			setEssentials(essentialsJSON)
 			setLoading(false)
 		})
