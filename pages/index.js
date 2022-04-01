@@ -2,8 +2,7 @@ import Head from 'next/head'
 import Script from 'next/script'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
-import StagingArea from '@components/StagingArea'
-import EssentialsList from '@components/EssentialsList'
+import Essentials from '@components/Essentials'
 
 export default function Home() {
 	return (
@@ -16,8 +15,7 @@ export default function Home() {
 
 			<main>
 				<Header title="Essential Groceries" />
-				<StagingArea/>
-				<EssentialsList/>
+				<Essentials/>
 			</main>
 			<Footer />
 		</div>
