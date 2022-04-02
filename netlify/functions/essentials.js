@@ -1,10 +1,11 @@
 import essentials from './essentials.json';
+import users from './users.json';
 
 export const handler = async function (event, context) {
 
 	const { identity, user } = context.clientContext;
 
-	if (user?.email !== "chad@knightleow.com") {
+	if (!users.includes(user?.email)) {
 		console.log("invalid user: " + user?.email)
 		return {
 			statusCode: 401,

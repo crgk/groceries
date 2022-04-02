@@ -1,4 +1,5 @@
 import todoist from './todoist.json';
+import users from './users.json';
 import { TodoistApi } from '@doist/todoist-api-typescript'
 
 export const handler = async function (event, context) {
@@ -6,7 +7,7 @@ export const handler = async function (event, context) {
 	const { identity, user } = context.clientContext;
 	const DEBUG = false
 
-	if (user?.email !== "chad@knightleow.com") {
+	if (!users.includes(user?.email)) {
 		console.log("invalid user: " + user?.email)
 		return {
 			statusCode: 401,
