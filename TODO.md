@@ -21,6 +21,11 @@ Backend
 - [ ] Dynamic storage
 	- [ ] Track whether a task already exists for an item
 
-BUGS
+QoL
+---
+- [ ] Have to log out/log in on mobile
+
+Bugs
 ----
 - [x] Duplicate tasks showing up in todoist?
+
