@@ -11,6 +11,7 @@ Frontend
 - [ ] Style the login button
 - [ ] Make components for the lists
 - [ ] Make components for the cards
+- [ ] side-by-side lists on desktop
 
 Backend
 -------
