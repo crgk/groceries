@@ -8,6 +8,9 @@ Frontend
 - [ ] Don't render undefined fields
 - [ ] User feedback on task creation
 - [ ] Better identity init handling
+- [ ] Style the login button
+- [ ] Make components for the lists
+- [ ] Make components for the cards
 
 Backend
 -------
@@ -15,6 +18,7 @@ Backend
 - [ ] Look up the projectId (from name)
 - [ ] Include tags
 - [ ] Dynamic storage
+	- [ ] Track whether a task already exists for an item
 
 BUGS
 ----
