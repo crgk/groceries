@@ -4,13 +4,15 @@ import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
-import netlifyIdentity from "netlify-identity-widget";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { IdentityContext } from "./identity-context.js";
 
 function request(method) {
+	let identity = useContext(IdentityContext)
 	return (url, body) => {
 		let headers = new Headers()
-		headers.set("Authorization", "Bearer " + netlifyIdentity.currentUser()?.token.access_token)
+		const at = identity.currentUser()?.token.access_token
+		headers.set("Authorization", "Bearer " + at)
 		return fetch(url, {
 			method: method,
 			body: body,
@@ -25,10 +27,6 @@ export default function Essentials() {
 	const [isLoading, setLoading] = useState(false)
 
 	const [ get, post ] = [ request('GET'), request('POST') ]
-
-	useEffect(() => {
-		netlifyIdentity.init()
-	}, [])
 
 	// Runs only on the first render because of the [] dependency param
 	useEffect(() => {
@@ -47,8 +45,6 @@ export default function Essentials() {
 	}
 
 	const idMatches = (targetId) => (item) => {
-			console.log("t: " + targetId)
-			console.log("i: " + item.id)
 		return item.id == targetId;
 	}
 	const stageItem = (toStage) => {
