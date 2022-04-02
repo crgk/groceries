@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { IdentityContext } from "./identity-context.js";
 
 function request(method) {
-	let identity = useContext(IdentityContext)
+	const identity = useContext(IdentityContext)
 	return (url, body) => {
 		let headers = new Headers()
 		const at = identity.currentUser()?.token.access_token
@@ -21,15 +21,16 @@ function request(method) {
 	}
 }
 
+
 export default function Essentials() {
 	const [stagedItems, setStagedItems] = useState([])
 	const [essentials, setEssentials] = useState([])
 	const [isLoading, setLoading] = useState(false)
+	const identity = useContext(IdentityContext)
 
 	const [ get, post ] = [ request('GET'), request('POST') ]
 
-	// Runs only on the first render because of the [] dependency param
-	useEffect(() => {
+	function fetchEssentials() {
 		setLoading(true)
 		get('/api/essentials')
 		.then(res => res.json())
@@ -37,7 +38,13 @@ export default function Essentials() {
 			setEssentials(essentialsJSON)
 			setLoading(false)
 		})
-	}, []);
+	}
+
+	// Runs only on the first render because of the [] dependency param
+	useEffect(fetchEssentials, []);
+	// Runs when login state changes
+	identity.on('login', fetchEssentials)
+	identity.on('logout', fetchEssentials)
 
 	const submit = () => {
 		post('/api/tasks', JSON.stringify(stagedItems))
