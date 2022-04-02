@@ -11,7 +11,8 @@ export default function Home() {
 			<IdentityWidget/>
 			<Head>
 				<title>Essential Groceries</title>
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/basket-check-icon-white.png" />
+				<link rel="apple-touch-icon" href="/basket-check-150x150-white.png" />
 			</Head>
 
 			<main>

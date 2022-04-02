@@ -9,8 +9,7 @@ export default function Footer() {
 				<div className={styles.netlifyIdentityButton} data-netlify-identity-button></div>
 
 				<p className={styles.madeWithNetlify} >Made with <img src="/netliheart.svg" alt="Netlify Logo" className={styles.logo} /> for you</p>
-
-				<p><a className={styles.attribution} href="https://www.flaticon.com/free-icons/basket-shop" title="basket shop icons">Basket shop icons created by pictranoosa - Flaticon</a></p>
+				<p><a className={styles.attribution} href="https://www.flaticon.com/free-icons/commerce-and-shopping" title="commerce and shopping icons">Commerce and shopping icons created by Rizki Ahmad Fauzi - Flaticon</a></p>
 			</Stack>
 		</footer>
 )}
