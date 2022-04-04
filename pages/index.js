@@ -17,7 +17,7 @@ export default function Home() {
 
 			<main>
 				<Header title="Essential Groceries" />
-				<Essentials/>
+				<Essentials />
 			</main>
 			<Footer />
 		</div>
