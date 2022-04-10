@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.2.7",
-    "netlify-cli": "^9.13.3"
+    "netlify-cli": "^9.16.4"
   }
 }

@@ -1,6 +1,6 @@
-import todoist from './todoist.json';
 import users from './users.json';
 import { TodoistApi } from '@doist/todoist-api-typescript'
+import faunadb from 'faunadb'
 
 export const handler = async function (event, context) {
 
@@ -14,8 +14,17 @@ export const handler = async function (event, context) {
 			body: JSON.stringify([])
 		}
 	}
+	const tenantDomain = user.email.split("@")[1]
 
-	const api = new TodoistApi(todoist.pat)
+	const c = new faunadb.Client({
+		secret: process.env.FAUNADB_SERVER_SECRET
+	})
+	const q = faunadb.query
+	const creds = await c.query(q.Get(
+		q.Match(q.Index("creds-by-domain"), tenantDomain)
+	))
+
+	const api = new TodoistApi(creds.data.pat)
 
 	let items = JSON.parse(event.body)
 	let errors = []
@@ -24,7 +33,7 @@ export const handler = async function (event, context) {
 	await Promise.allSettled(
 		items.map(item => api.addTask({
 			content: item.name,
-			projectId: todoist.project
+			projectId: creds.data.projectId
 		}).then(response => {
 			itemsToTasks[item.id] = response
 		}, response => {
