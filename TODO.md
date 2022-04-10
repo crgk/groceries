@@ -21,6 +21,7 @@ Backend
 - [ ] Include tags
 - [ ] Dynamic storage
 	- [ ] Track whether a task already exists for an item
+	- [ ] Don't commit the todoist PAT
 
 QoL
 ---
