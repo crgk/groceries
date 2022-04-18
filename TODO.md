@@ -29,6 +29,6 @@ QoL
 
 Bugs
 ----
-- [ ] The essentials list isn't centered
+- [x] The essentials list isn't centered
 - [x] Duplicate tasks showing up in todoist?
 

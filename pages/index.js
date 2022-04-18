@@ -7,13 +7,10 @@ import IdentityWidget from '@components/IdentityWidget'
 
 export default function Home() {
 	return (
-		<>
-			<Container maxWidth="sm">
-				<Header title="Essentials" />
-				<Essentials />
-			</Container>
+		<Container maxWidth="sm">
+			<Essentials />
 			<Footer />
 			<IdentityWidget/>
-		</>
+		</Container>
 	)
 }
