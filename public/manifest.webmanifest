@@ -1,0 +1,15 @@
+{
+  "background_color": "#42a5f5",
+  "description": "Easily add your essential grocery items to your shopping list",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icons/basket-check-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "name": "Essential Groceries",
+  "short_name": "Groceries",
+  "start_url": "index.html"
+}

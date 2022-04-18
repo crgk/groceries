@@ -7,8 +7,9 @@ function Document() {
 			<Head>
 				<meta name="theme-color" content={theme.palette.primary.main} />
 				<meta name="mobile-web-app-capable" content="yes" />
-				<link rel="icon" href="/basket-check-icon-white.png" />
-				<link rel="apple-touch-icon" href="/basket-check-150x150-white.png" />
+				<link rel="icon" href="/icons/basket-check-icon-white.png" />
+				<link rel="apple-touch-icon" href="/icons/basket-check-150x150-white.png" />
+				<link rel="webmanifest" href="manifest.webmanifest" />
 			</Head>
 			<body>
 				<Main />
