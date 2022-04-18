@@ -1,6 +1,7 @@
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
+import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
@@ -50,29 +51,46 @@ export default function Essentials() {
 	identity.on('login', fetchEssentials)
 	identity.on('logout', fetchEssentials)
 
+	const resetLists = () => {
+		fetchEssentials()
+		setStagedItems([])
+	}
 	const submit = () => {
 		post('/api/tasks', JSON.stringify(stagedItems))
-		.then(res => res.json()) .then(setStagedItems([]))
+		.then(res => res.json()) .then(resetLists)
 	}
 
 	const idMatches = (targetId) => (item) => {
 		return item.id == targetId;
 	}
-	const stageItem = (toStage) => {
-		if (stagedItems.some(idMatches(toStage.id)))
+	const putTo = (array, item) => {
+		if (array.some(idMatches(item.id)))
+			return array
+
+		let a = Array.from(array)
+		a.push(item)
+		return a
+	}
+	const popFrom = (array, item) => {
+		if (!array.some(idMatches(item.id)))
 			return
 
-		let s = Array.from(stagedItems)
-		s.push(toStage)
+		let a = Array.from(array)
+		let remove = a.findIndex(idMatches(item.id))
+		a.splice(remove, 1)
+		return a
+	}
+	const stageItem = (toStage) => {
+		const s = putTo(stagedItems, toStage)
+		const e = popFrom(essentials, toStage)
 		setStagedItems(s)
+		setEssentials(e)
 	}
 	const unstageItem = (toUnstage) => {
-			if (!stagedItems.some(idMatches(toUnstage.id)))
-				return
-
-			let s = Array.from(stagedItems)
-			s.splice(s.findIndex(idMatches(toUnstage.id)), 1)
-			setStagedItems(s)
+		const s = popFrom(stagedItems, toUnstage)
+		const e = putTo(essentials, toUnstage)
+		setStagedItems(s)
+		setEssentials(e)
 	}
 
 	function StageActions({ item }) {
@@ -104,11 +122,9 @@ export default function Essentials() {
 	}
 
 	return (
-		<Stack
-			spacing={2}
-			sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper'}}>
-			<Button onClick={submit}>Add to list</Button>
-			<Divider>STAGED</Divider>
+		<Container
+			sx={{ width: '100%', maxWidth: 300 }}>
+			<Divider sx={{margin:"20px"}}>STAGED</Divider>
 			<Stack id="staging" spacing={2}>
 				{Object.keys(stagedItems)
 						.map(key => stagedItems[key])
@@ -118,8 +134,14 @@ export default function Essentials() {
 						item={item}
 						actions={<UnstageActions item={item}/>} />
 				))}
+				<Button
+					variant="contained"
+					disabled={ stagedItems.length == 0 }
+					onClick={submit}>
+						Add to list
+				</Button>
 			</Stack>
-			<Divider>UNSTAGED</Divider>
+			<Divider sx={{margin:"20px"}}>UNSTAGED</Divider>
 			<Stack id="essentials" spacing={2}>
 				{essentials.map(ess => (
 					<ItemCard
@@ -128,6 +150,6 @@ export default function Essentials() {
 						actions={<StageActions item={ess}/> } />
 				))}
 			</Stack>
-		</Stack>
+		</Container>
 	)
 }
