@@ -100,6 +100,7 @@ export default function Essentials() {
 						.map(key => stagedItems[key])
 						.map(item => (
 					<ItemCard
+						borderColor='secondary.light'
 						item={item}
 						actions={<UnstageActions item={item}/>} />
 				))}
@@ -108,7 +109,7 @@ export default function Essentials() {
 			<Stack id="essentials" spacing={2}>
 				{essentials.map(ess => (
 					<ItemCard
-						sx={{ width: '100%' }}
+						borderColor='primary.light'
 						item={ess}
 						actions={<StageActions item={ess}/> } />
 				))}
