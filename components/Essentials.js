@@ -15,6 +15,8 @@ import ItemCard from "@components/ItemCard";
 
 function request(method) {
 	const identity = useContext(IdentityContext)
+	if (identity.currentUser()?.token.expires_at - Date.now() < 1000)
+		identity.refresh()
 	return (url, body) => {
 		let headers = new Headers()
 		const at = identity.currentUser()?.token.access_token
@@ -50,6 +52,7 @@ export default function Essentials() {
 	// Runs when login state changes
 	identity.on('login', fetchEssentials)
 	identity.on('logout', fetchEssentials)
+	identity.on('refresh', fetchEssentials)
 
 	const resetLists = () => {
 		fetchEssentials()
@@ -129,7 +132,7 @@ export default function Essentials() {
 				{Object.keys(stagedItems)
 						.map(key => stagedItems[key])
 						.map(item => (
-					<ItemCard
+					<ItemCard key={item.id}
 						borderColor='secondary.light'
 						item={item}
 						actions={<UnstageActions item={item}/>} />
@@ -144,7 +147,7 @@ export default function Essentials() {
 			<Divider sx={{margin:"20px"}}>UNSTAGED</Divider>
 			<Stack id="essentials" spacing={2}>
 				{essentials.map(ess => (
-					<ItemCard
+					<ItemCard key={ess.id}
 						borderColor='primary.light'
 						item={ess}
 						actions={<StageActions item={ess}/> } />

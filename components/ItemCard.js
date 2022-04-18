@@ -30,7 +30,7 @@ function Vendor({ name, noWrap }) {
 export default function ItemCard(props) {
 	const item = props.item
 	return (
-		<Card key={item.id} sx={{ minWidth: 260, borderTop: 20, borderColor: props.borderColor }}>
+		<Card sx={{ minWidth: 260, borderTop: 20, borderColor: props.borderColor }}>
 			<CardContent>
 				<Typography gutterBottom>
 					{item.name}
