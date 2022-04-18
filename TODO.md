@@ -6,12 +6,12 @@ Frontend
 	- [ ] add Suspense?
 - [x] Staging area, add tasks in bulk
 - [x] Don't render undefined fields
-- [ ] User feedback on task creation
-- [ ] Better identity init handling
+- [x] User feedback on task creation
+- [x] Better identity init handling
 - [ ] Style the login button
 - [ ] Make components for the lists
 - [x] Make components for the cards
-- [ ] side-by-side lists on desktop
+- [ ] side-by-side lists on desktop?
 - [ ] Put the footer into a popup or something
 
 Backend
@@ -29,5 +29,6 @@ QoL
 
 Bugs
 ----
+- [ ] The essentials list isn't centered
 - [x] Duplicate tasks showing up in todoist?
 
