@@ -5,6 +5,8 @@ import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 import { useContext, useEffect, useState } from "react";
 
 import { IdentityContext } from "./identity-context.js";
@@ -76,7 +78,13 @@ export default function Essentials() {
 	function StageActions({ item }) {
 		return (
 			<CardActions>
-				<Button size="small" onClick={() => stageItem(item)}>Stage</Button>
+				<Button
+					variant="outlined"
+					size="small"
+					startIcon={<ShoppingCartIcon />}
+					onClick={() => stageItem(item)}>
+						Stage
+					</Button>
 			</CardActions>
 		)
 	}
@@ -84,7 +92,13 @@ export default function Essentials() {
 	function UnstageActions({ item }) {
 		return (
 			<CardActions>
-				<Button size="small" onClick={() => unstageItem(item)}>Unstage</Button>
+				<Button
+					variant="outlined"
+					size="small"
+					startIcon={<RemoveShoppingCartIcon />}
+					onClick={() => unstageItem(item)}>
+						Unstage
+				</Button>
 			</CardActions>
 		)
 	}
