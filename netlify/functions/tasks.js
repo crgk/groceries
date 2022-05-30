@@ -1,7 +1,6 @@
 import users from './users.json';
 import { TodoistApi } from '@doist/todoist-api-typescript';
 import faunadb from 'faunadb';
-import camelcase from 'lodash/fp';
 
 export const handler = async function (event, context) {
 
@@ -13,8 +12,8 @@ export const handler = async function (event, context) {
 			return ""
 		}
 
-		// Labels are keyed in camelCase
-		const labelKey = camelcase(item.preferredVendor)
+		// Label keys in the db are just the lowercase string jammed together
+		const labelKey = item.preferredVendor.replace(/\s+/g, '').toLowerCase()
 		return labels[labelKey]
 	}
 
