@@ -1,11 +1,22 @@
 import users from './users.json';
 import { TodoistApi } from '@doist/todoist-api-typescript';
 import faunadb from 'faunadb';
+import camelcase from 'lodash/fp';
 
 export const handler = async function (event, context) {
 
 	const { identity, user } = context.clientContext;
 	const DEBUG = false
+
+	function getVendorLabelId(item, labels) {
+		if (item.preferredVendor === undefined) {
+			return ""
+		}
+
+		// Labels are keyed in camelCase
+		const labelKey = camelcase(item.preferredVendor)
+		return labels[labelKey]
+	}
 
 	if (!users.includes(user?.email)) {
 		console.log("invalid user: " + user?.email)
@@ -40,11 +51,11 @@ export const handler = async function (event, context) {
 	await Promise.allSettled(
 		items.map(item => {
 			let labels = [creds.data.labelId]
-			const vendorLabelId = creds.data.vendorLabels[item.preferredVendor?.toLowerCase()]
+			const vendorLabelId = getVendorLabelId(item, creds.data.vendorLabels)
 			if (vendorLabelId) {
 				labels.push(vendorLabelId)
 			}
-			const description = `${item.details ? item.details : ""}\n${item.quantity ? item.quantity : ""}`.trim()
+			const description = `${item.details ? item.details : ""} \n${item.quantity ? item.quantity : ""}`.trim()
 			return api.addTask({
 				content: item.name,
 				description: description,
