@@ -31,9 +31,17 @@ export const handler = async function (event, context) {
 	let itemsToTasks = {}
 
 	await Promise.allSettled(
-		items.map(item => api.addTask({
-			content: item.name,
-			projectId: creds.data.projectId
+		items.map(item => {
+			let labels = [creds.data.labelId]
+			const vendorLabelId = creds.data.preferredVendors[item.preferredVendor?.toLowerCase()]
+			if (vendorLabelId) {
+				labels.push(vendorLabelId)
+			}
+			return api.addTask({
+				content: item.name,
+				projectId: creds.data.projectId,
+				labelIds: labels
+			})
 		}).then(response => {
 			itemsToTasks[item.id] = response
 		}, response => {
