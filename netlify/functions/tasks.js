@@ -47,6 +47,7 @@ export const handler = async function (event, context) {
 			return api.addTask({
 				content: item.name,
 				projectId: creds.data.projectId,
+				sectionId: creds.data.sectionId,
 				labelIds: labels
 			}).then(response => {
 				itemsToTasks[item.id] = response
