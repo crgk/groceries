@@ -1,6 +1,6 @@
 import users from './users.json';
-import { TodoistApi } from '@doist/todoist-api-typescript'
-import faunadb from 'faunadb'
+import { TodoistApi } from '@doist/todoist-api-typescript';
+import faunadb from 'faunadb';
 
 export const handler = async function (event, context) {
 
@@ -24,6 +24,13 @@ export const handler = async function (event, context) {
 		q.Match(q.Index("creds-by-domain"), tenantDomain)
 	))
 
+	if (creds === undefined) {
+		return {
+			statusCode: 404,
+			body: JSON.stringify({"message": "no task api credentials found"})
+		}
+	}
+
 	const api = new TodoistApi(creds.data.pat)
 
 	let items = JSON.parse(event.body)
@@ -33,7 +40,7 @@ export const handler = async function (event, context) {
 	await Promise.allSettled(
 		items.map(item => {
 			let labels = [creds.data.labelId]
-			const vendorLabelId = creds.data.preferredVendors[item.preferredVendor?.toLowerCase()]
+			const vendorLabelId = creds.data.vendorLabels[item.preferredVendor?.toLowerCase()]
 			if (vendorLabelId) {
 				labels.push(vendorLabelId)
 			}
@@ -41,17 +48,17 @@ export const handler = async function (event, context) {
 				content: item.name,
 				projectId: creds.data.projectId,
 				labelIds: labels
+			}).then(response => {
+				itemsToTasks[item.id] = response
+			}, response => {
+				let d = {message: "Failed to create task for item " + item.id}
+				if (DEBUG) {
+					d['error'] = response.responseData
+				}
+				errors.push(d)
 			})
-		}).then(response => {
-			itemsToTasks[item.id] = response
-		}, response => {
-			let d = {message: "Failed to create task for item " + item.id}
-			if (DEBUG) {
-				d['error'] = response.responseData
-			}
-			errors.push(d)
 		})
-	))
+	)
 
 	if (errors.length != 0) {
 		return {
