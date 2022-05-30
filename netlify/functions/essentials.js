@@ -1,4 +1,4 @@
-import essentials from './essentials.json';
+import essentials from './essentials_list.json';
 import users from './users.json';
 
 export const handler = async function (event, context) {
