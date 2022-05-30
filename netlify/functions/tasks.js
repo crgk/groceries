@@ -44,8 +44,10 @@ export const handler = async function (event, context) {
 			if (vendorLabelId) {
 				labels.push(vendorLabelId)
 			}
+			const description = `${item.details ? item.details : ""}\n${item.quantity ? item.quantity : ""}`.trim()
 			return api.addTask({
 				content: item.name,
+				description: description,
 				projectId: creds.data.projectId,
 				sectionId: creds.data.sectionId,
 				labelIds: labels

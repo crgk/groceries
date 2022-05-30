@@ -2,7 +2,6 @@
   {
     "id": 1,
     "name": "Cheddar cheese",
-    "details": "",
     "preferredVendor": "Costco",
     "quantity": "1 block"
   },
@@ -57,13 +56,12 @@
     "name": "Honey",
     "details": "LOCAL",
     "preferredVendor": "Whole Foods",
-    "volume": "1 big jar"
+    "quantity": "1 big jar"
   },
   {
     "id": 11,
     "name": "Ground Flaxseed",
-    "preferredVendor": "Whole Foods",
-    "volume": ""
+    "preferredVendor": "Whole Foods"
   },
   {
     "id": 12,
