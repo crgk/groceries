@@ -1,13 +1,21 @@
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import Container from "@mui/material/Container";
 import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import MenuIcon from "@mui/icons-material/menu";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+
+import { useTheme } from '@mui/material/styles';
 import { useContext, useEffect, useState } from "react";
 
 import { IdentityContext } from "./identity-context.js";
@@ -34,6 +42,7 @@ export default function Essentials() {
 	const [essentials, setEssentials] = useState([])
 	const [isLoading, setLoading] = useState(false)
 	const identity = useContext(IdentityContext)
+	const theme = useTheme()
 
 	const [ get, post ] = [ request('GET'), request('POST') ]
 
@@ -58,10 +67,7 @@ export default function Essentials() {
 		fetchEssentials()
 		setStagedItems([])
 	}
-	const submit = () => {
-		post('/api/tasks', JSON.stringify(stagedItems))
-		.then(res => res.json()) .then(resetLists)
-	}
+
 
 	const idMatches = (targetId) => (item) => {
 		return item.id == targetId;
@@ -96,6 +102,16 @@ export default function Essentials() {
 		setEssentials(e)
 	}
 
+	const submit = () => {
+		post('/api/tasks', JSON.stringify(stagedItems))
+		.then(res => res.json()).then(resetLists)
+	}
+	const wipe = () => {
+		resetLists()
+	}
+	const laundry = () => {
+		post('/api/laundry', JSON.stringify({'load': 'laundry'}))
+	}
 	function StageActions({ item }) {
 		return (
 			<CardActions>
@@ -124,7 +140,29 @@ export default function Essentials() {
 		)
 	}
 
+	const appBarBackground = () => {
+		return 'linear-gradient(to right, ' + the
+	}
+
+	const gradientColors = [ "blue", "red" ]
+
 	return (
+		<Box>
+		<AppBar position="static" sx={{ background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})` }}>
+			<Toolbar>
+				<Typography variant="h6" sx={{ flexGrow: 1 }}>Essentials</Typography>
+				<Button
+					color="inherit"
+					onClick={laundry}>
+						Do laundry
+				</Button>
+				<Button
+					color="inherit"
+					onClick={wipe}>
+						Wipe clean
+				</Button>
+			</Toolbar>
+		</AppBar>
 		<Container
 			sx={{ width: '100%', maxWidth: 300 }}>
 			<Divider sx={{margin:"20px"}}>STAGED</Divider>
@@ -154,5 +192,6 @@ export default function Essentials() {
 				))}
 			</Stack>
 		</Container>
+		</Box>
 	)
 }

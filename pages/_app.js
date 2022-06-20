@@ -6,7 +6,7 @@ function Application({ Component, pageProps }) {
 	return (
 		<>
 			<Head>
-				<title>Essentials</title>
+				<title>Knight-Leow Household</title>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 			</Head>
 			<ThemeProvider theme={theme}>
