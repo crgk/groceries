@@ -149,7 +149,7 @@ export default function Essentials() {
 		<Box>
 		<AppBar position="static" sx={{ background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})` }}>
 			<Toolbar>
-				<Typography variant="h6" sx={{ flexGrow: 1 }}>Essentials</Typography>
+				<Typography variant="h6" sx={{ flexGrow: 1 }}>K-L</Typography>
 				<Button
 					color="inherit"
 					onClick={laundry}>
