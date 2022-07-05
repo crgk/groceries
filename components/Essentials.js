@@ -8,11 +8,13 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import LocalLaundryServiceSharpIcon from '@mui/icons-material/LocalLaundryServiceSharp';
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 import { useTheme } from '@mui/material/styles';
 import { useContext, useEffect, useState } from "react";
@@ -139,27 +141,23 @@ export default function Essentials() {
 		)
 	}
 
-	const appBarBackground = () => {
-		return 'linear-gradient(to right, ' + the
-	}
-
 	const gradientColors = [ "blue", "red" ]
 
 	return (
 		<Box>
 		<AppBar position="static" sx={{ background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})` }}>
 			<Toolbar>
-				<Typography variant="h6" sx={{ flexGrow: 1 }}>K-L</Typography>
-				<Button
+				<Typography variant="h6" sx={{ flexGrow: 1 }}>Knight-Leow</Typography>
+				<IconButton
 					color="inherit"
 					onClick={laundry}>
-						Do laundry
-				</Button>
-				<Button
+						<LocalLaundryServiceSharpIcon />
+				</IconButton>
+				<IconButton
 					color="inherit"
 					onClick={wipe}>
-						Wipe clean
-				</Button>
+						<RefreshIcon />
+				</IconButton>
 			</Toolbar>
 		</AppBar>
 		<Container
